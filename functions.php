@@ -48,7 +48,7 @@ function theme_enqueue_styles() {
 
   wp_enqueue_style( 'parent-ionicons', get_template_directory_uri() . '/css/ionicons.min.css');
   wp_enqueue_style( 'parent-fancybox', get_template_directory_uri() . '/css/jquery.fancybox.css');
-  wp_enqueue_style( 'vizibalazs-style', get_stylesheet_directory_uri() . '/style.css' );
+  wp_enqueue_style( 'v2g-style', get_stylesheet_directory_uri() . '/style.css' );
 
   // Deregister
   wp_deregister_style( 'flickity' );

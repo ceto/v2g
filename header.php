@@ -124,4 +124,7 @@ get_sidebar(); ?>
 
 	</header><!-- END .site-header -->
 
+
+	<?php get_template_part('thesearchpanel'); ?>
+
 	<div id="content" class="site-content">
