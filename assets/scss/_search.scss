@@ -1,0 +1,109 @@
+.search-form {
+  @include clearfix();
+
+  label {
+    width: calc(100% - 11rem);
+    display: block;
+    float:left;
+  }
+
+}
+
+.search-field {
+  border-radius: 5px 0 0 5px !important;
+
+}
+
+.search-submit {
+  width:11rem;
+  display: block;
+  float:left;
+  padding: 1.4666rem 1rem !important;
+  border-radius: 0 5px 5px 0 !important;
+}
+
+
+.searchcontent {
+
+}
+
+.searchcontent.loading > * {
+    opacity:0.2;
+}
+
+.searchcontent.loading:before {
+    content: "Loading New Posts";
+    padding: 1em;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    display: block;
+}
+
+.site-footer {
+  background-color: $xlight-gray !important;
+}
+.lightfooter {
+  background-color: $xlight-gray;
+  padding:6rem 0 2rem;
+}
+/*** Search ****/
+.searchtags {
+  @include clearfix();
+}
+
+.searchtags__elem {
+  width: 50%;
+  float: left;
+  padding:0 .5rem;
+}
+.searchtags__elem--full {
+  width: 100%;
+  float: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .searchtags__elem {
+    width:33.333%;
+    padding:0 1rem;
+  }
+  .searchtags__elem--full {
+    width: 100%;
+    float: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .searchtags__elem {
+    width:25%;
+  }
+  .searchtags__elem--full {
+    width: 100%;
+    float: none;
+  }
+}
+
+.searchtags__elem h3{
+  font-size: 14px;
+  margin:0 0 .25em;
+}
+
+
+.termlist {
+  list-style: none;
+  font-size: 12px;
+}
+
+.termlist__item {
+  display: inline-block;
+}
+
+
+.termlist__item:not(:last-of-type):after {
+  content:' | ';
+}
+
+.termlist__item .count {
+  font-weight: bold;
+  color:#dd3333;
+}

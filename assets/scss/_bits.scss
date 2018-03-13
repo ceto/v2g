@@ -1,0 +1,14 @@
+$gray: #434444;
+$light-gray: #c8c8c8;
+$xlight-gray: #f8f8f8;
+$red: #dd3333;
+
+
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

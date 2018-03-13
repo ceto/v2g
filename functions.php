@@ -48,7 +48,7 @@ function theme_enqueue_styles() {
 
   wp_enqueue_style( 'parent-ionicons', get_template_directory_uri() . '/css/ionicons.min.css');
   wp_enqueue_style( 'parent-fancybox', get_template_directory_uri() . '/css/jquery.fancybox.css');
-  wp_enqueue_style( 'v2g-style', get_stylesheet_directory_uri() . '/style.css' );
+  wp_enqueue_style( 'v2g-style', get_stylesheet_directory_uri() . '/dist/css/style.css' );
 
   // Deregister
   wp_deregister_style( 'flickity' );
@@ -613,3 +613,72 @@ function worx_fonts_url() {
     endif;
 
   }
+
+
+function v2g_ajax_search_enqueues() {
+  wp_enqueue_script( 'ajax-search', get_stylesheet_directory_uri() . '/js/ajax-search.js', array( 'jquery' ), '1.0.0', true );
+  wp_localize_script( 'ajax-search', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+}
+//add_action( 'wp_enqueue_scripts', 'v2g_ajax_search_enqueues' );
+
+
+
+function v2g_load_search_results() {
+    $query = $_POST['query'];
+
+    $args = array(
+        'post_type' => 'portfolio_project',
+        'post_status' => 'publish',
+        's' => $query
+    );
+    $search = new WP_Query( $args );
+
+    ob_start();
+
+    if ( $search->have_posts() ) :
+
+    ?>
+
+    <?php
+      while ( $search->have_posts() ) : $search->the_post();
+
+        get_template_part( 'partials/content', 'search' );
+
+      endwhile;
+  else : ?>
+    <p>No results found</p>
+  <?php endif;
+
+  $content = ob_get_clean();
+
+  echo $content;
+  die();
+
+}
+
+add_action( 'wp_ajax_load_search_results', 'v2g_load_search_results' );
+add_action( 'wp_ajax_nopriv_load_search_results', 'v2g_load_search_results' );
+
+
+
+function v2g_post_shared_attributes( array $shared_attributes, WP_Post $post ) {
+    // Here we make sure we push the post's language data to Algolia.
+    $shared_attributes['wpml'] = apply_filters( 'wpml_post_language_details', null,  $post->ID );
+
+    return $shared_attributes;
+}
+
+// Push WPML data for both posts and searchable posts indices.
+add_filter( 'algolia_post_shared_attributes', 'v2g_post_shared_attributes', 10, 2 );
+add_filter( 'algolia_searchable_post_shared_attributes', 'v2g_post_shared_attributes', 10, 2 );
+
+
+function v2g_posts_index_settings( array $settings ) {
+    // We add the language code to the facets to be able to easily filter on it.
+    $settings['attributesForFaceting'][] = 'wpml.language_code';
+
+    return $settings;
+}
+
+add_filter( 'algolia_posts_index_settings', 'v2g_posts_index_settings' );
+add_filter( 'algolia_searchable_posts_index_settings', 'v2g_posts_index_settings' );
