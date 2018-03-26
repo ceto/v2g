@@ -26,7 +26,6 @@
   ?>
 <header class="mosaic-header">
   <h1 class="mosaic-title"><?php _e('Portfolio','v2g'); ?><?= $subtitle ?></h1>
-
   <nav class="nav-portcategory">
     <ul class="js-isotopefilter">
       <li class=""><a href="<?= get_the_permalink(get_option('page_on_front')); ?>#" data-filter="*"><?php _e('All','v2g') ?></a></li>
@@ -43,4 +42,5 @@
       <?php } ?>
     </ul>
   </nav>
+  <?php get_template_part('thesearchpanel'); ?>
 </header>

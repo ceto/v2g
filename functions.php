@@ -621,6 +621,11 @@ function v2g_ajax_search_enqueues() {
 }
 //add_action( 'wp_enqueue_scripts', 'v2g_ajax_search_enqueues' );
 
+function v2g_search_enqueues() {
+  wp_enqueue_script( 'searchpanel', get_stylesheet_directory_uri() . '/js/searchpanel.js', array( 'jquery' ), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'v2g_search_enqueues' );
+
 
 
 function v2g_load_search_results() {
