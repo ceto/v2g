@@ -15,6 +15,17 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 
 
+//Exclude pages from WordPress Search
+if (!is_admin()) {
+function v2g_search_filter($query) {
+if ($query->is_search) {
+$query->set('post_type', 'portfolio_project');
+}
+return $query;
+}
+add_filter('pre_get_posts','v2g_search_filter');
+}
+
 # Deregister style files
 function cement_DequeueYarppStyle()
 {
