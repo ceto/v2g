@@ -1,39 +1,47 @@
 .thesearchpanel {
   max-width: 68rem;
-  margin:1.5rem auto 0;
+  margin:1rem auto 0;
   text-align: center;
 }
 .searchtoggler {
   position: relative;
   display: inline-block;
-  background-color: $xlight-gray;
-  border:1px solid $light-gray;
+  //background-color: $xlight-gray;
+  //border-bottom:1px dotted $light-gray;
   line-height: 1;
-  padding:.333em .5em;
+  padding:0 0;
   font-size: 1.25rem;
   fill: currentColor;
-  border-radius: 3px;
+  //border-radius: 3px;
   margin:0 auto 0;
   //text-transform: uppercase;
+
 
   &:hover, &:focus {
     color:$red;
   }
 
   svg {
-    margin-left: .125em;
+    margin-left: .0875em;
     width:.875em;
     height:.875em;
+    display: inline-block;
+    //transform: translateY(.0875em);
+
   }
 
   .is-open & {
-    display: none;
+    opacity: 0;
   }
 
 }
 .search-form {
   display: none;
-  @include clearfix();
+  position: absolute;
+  top:-2.5rem;
+  width:100%;
+  z-index:1;
+  //@include clearfix();
 
   label {
     position: relative;
@@ -57,17 +65,21 @@
 }
 
 input[type="search"].search-field {
-  font-size: 1rem;
+  font-size: 1.5rem;
   line-height: 1;
-  padding: .333em .5em;
+  //padding: .333em .5em;
+  padding:1em 1em;
   border-radius: 3px;
-  width:6rem;
+  //width:6rem;
+  width:100%;
   background-color: $xlight-gray;
   border:1px solid $light-gray;
+  opacity: 0;
   &:focus {
-    font-size: 1.5rem;
-    padding:1em 1em;
-    width:100%;
+    // font-size: 1.5rem;
+    // padding:1em 1em;
+    // width:100%;
+    opacity: 1;
   }
 }
 
